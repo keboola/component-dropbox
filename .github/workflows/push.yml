@@ -113,13 +113,19 @@ jobs:
           name: ${{ env.KBC_DEVELOPERPORTAL_APP }}
           path: /tmp
 
-      - name: Load Image & Run Tests
+      - name: Load Image
         run: |
           docker load --input /tmp/${{ env.KBC_DEVELOPERPORTAL_APP }}.tar
           docker image ls -a
-          docker run ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest flake8 . --config=flake8.cfg
-          echo "Running unit-tests..."
-          docker run ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest python -m unittest discover
+
+      - name: Run flake8
+        run: |
+          docker run --rm ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest flake8 . --config=flake8.cfg
+
+      - name: Run Pytest
+        run: |
+          docker run --rm ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest \
+            /bin/sh -c "pip install pytest && pytest"
 
   tests-kbc:
     name: Run KBC Tests
