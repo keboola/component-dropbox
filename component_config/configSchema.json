@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "title": "Dropbox Extractor Configuration (API v2)",
+  "required": ["dropbox_links"],
+  "properties": {
+    "dropbox_links": {
+      "type": "array",
+      "title": "Dropbox Links",
+      "propertyOrder": 1,
+      "items": {
+        "type": "object",
+        "title": "Dropbox Link",
+        "required": ["download_url", "table_name"],
+        "properties": {
+          "download_url": {
+            "type": "string",
+            "title": "Dropbox Download URL",
+            "description": "Paste the Dropbox share link to download your file."
+          },
+          "table_name": {
+            "type": "string",
+            "title": "Table Name",
+            "description": "Name of the output table in Keboola Storage."
+          }
+        }
+      }
+    },
+    "bucket": {
+      "type": "string",
+      "title": "Bucket Name",
+      "description": "Optional. Bucket where all downloaded tables will be stored. E.g. in.c-dropbox-extractor. Leave blank to use the default bucket.",
+      "default": "in.c-dropbox-extractor",
+      "propertyOrder": 2
+    },
+    "debug": {
+      "type": "boolean",
+      "title": "Enable Debug Mode",
+      "default": false,
+      "propertyOrder": 3
+    }
+  }
+}

@@ -1,0 +1,1 @@
+https://github.com/keboola/component-dropbox/blob/master/LICENSE.md
