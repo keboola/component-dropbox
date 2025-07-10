@@ -49,8 +49,6 @@ The extractor requires a JSON configuration file structured like this:
 | Parameter       | Required | Description                                                                                                                             |
 | --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `dropbox_links` | Yes      | An array of Dropbox files to download. Each object requires a `download_url` (Dropbox share link) and `table_name` (output table name). |
-| `bucket`        | No       | Optional bucket where the tables will be stored (e.g. `in.c-my_bucket`). Defaults to `in.c-dropbox-extractor`.                          |
-| `debug`         | No       | Enables verbose debug logs.                                                                                                             |
 
 #### Important:
 
