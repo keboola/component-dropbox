@@ -118,14 +118,12 @@ jobs:
           docker load --input /tmp/${{ env.KBC_DEVELOPERPORTAL_APP }}.tar
           docker image ls -a
 
-      - name: Run flake8
+      - name: Run build_n_test.sh
         run: |
-          docker run --rm ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest flake8 . --config=flake8.cfg
-
-      - name: Run Pytest
-        run: |
-          docker run --rm ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest \
-            /bin/sh -c "pip install pytest && pytest"
+          docker run --rm \
+            -v ${{ github.workspace }}:/code \
+            ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest \
+            /bin/sh /code/scripts/build_n_test.sh
 
   tests-kbc:
     name: Run KBC Tests

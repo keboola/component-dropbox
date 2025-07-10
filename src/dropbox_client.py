@@ -5,25 +5,22 @@ from keboola.component import UserException
 
 
 class DropboxClient:
-    """
-    Client for downloading files from Dropbox shared links
+    """Client for downloading files from Dropbox shared links
     and writing output tables & manifests using Keboola SDK.
     """
 
     def __init__(self, component, config):
-        """
-        :param component: Keboola ComponentBase instance
+        """:param component: Keboola ComponentBase instance
         :param config: Configuration object
         """
         self.component = component
         self.config = config
 
     def download_all_files(self) -> None:
-        """
-        Process all dropbox links from the config:
-          - download each file
-          - save CSV to data/out/tables
-          - write manifest
+        """Process all dropbox links from the config:
+        - download each file
+        - save CSV to data/out/tables
+        - write manifest
         """
         for dropbox_link in self.config.links:
             self._download_single_file(dropbox_link)
@@ -44,8 +41,7 @@ class DropboxClient:
         table_def = self.component.create_out_table_definition(
             f"{table_name}.csv",
             primary_key=[],
-            incremental=False,
-            destination=f"{self.config.bucket_name}.{table_name}"
+            incremental=False
         )
 
         logging.info(

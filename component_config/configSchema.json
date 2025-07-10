@@ -26,19 +26,6 @@
           }
         }
       }
-    },
-    "bucket": {
-      "type": "string",
-      "title": "Bucket Name",
-      "description": "Optional. Bucket where all downloaded tables will be stored. E.g. in.c-dropbox-extractor. Leave blank to use the default bucket.",
-      "default": "in.c-dropbox-extractor",
-      "propertyOrder": 2
-    },
-    "debug": {
-      "type": "boolean",
-      "title": "Enable Debug Mode",
-      "default": false,
-      "propertyOrder": 3
     }
   }
 }

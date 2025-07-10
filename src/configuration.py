@@ -1,4 +1,3 @@
-import logging
 import re
 from typing import List, Optional
 from pydantic import BaseModel, Field, HttpUrl, ValidationError, model_validator
@@ -36,29 +35,6 @@ class Parameters(BaseModel):
         title="Dropbox Links",
         description="List of Dropbox links to download and corresponding table names."
     )
-    bucket: Optional[str] = Field(
-        "in.c-dropbox-extractor",
-        title="Bucket Name",
-        description="Optional. Bucket where all downloaded tables will be stored."
-    )
-    debug: bool = Field(
-        False,
-        title="Enable Debug Mode",
-        description="Enable verbose logging for debugging purposes."
-    )
-
-    @model_validator(mode="after")
-    def validate_bucket(self) -> "Parameters":
-        if self.bucket is not None:
-            self.bucket = self.bucket.strip()
-            if not self.bucket:
-                raise ValueError("Bucket name cannot be empty if provided.")
-            if "." not in self.bucket:
-                raise ValueError(
-                    f"Bucket name '{self.bucket}' is invalid. It should contain a dot (e.g. 'in.c-my_bucket')."
-                )
-        return self
-
 
 class Configuration(BaseModel):
     parameters: Parameters
@@ -75,19 +51,6 @@ class Configuration(BaseModel):
             raise UserException(
                 f"Configuration validation error: {', '.join(error_messages)}"
             )
-
-        if self.parameters.debug:
-            logging.basicConfig(
-                level=logging.DEBUG,
-                format="%(asctime)s %(levelname)s %(message)s",
-            )
-            logging.debug("Component will run in Debug mode")
-            logging.debug("Resolved configuration:")
-            logging.debug(self.model_dump_json(indent=2))
-
-    @property
-    def bucket_name(self) -> str:
-        return self.parameters.bucket or "in.c-dropbox-extractor"
 
     @property
     def links(self) -> List[DropboxLink]:

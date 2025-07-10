@@ -1,5 +1,4 @@
-"""
-Dropbox Extractor Component (v2) main class.
+"""Dropbox Extractor Component (v2) main class.
 """
 from datetime import datetime, UTC
 import logging
