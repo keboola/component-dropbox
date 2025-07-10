@@ -15,12 +15,14 @@
           "download_url": {
             "type": "string",
             "title": "Dropbox Download URL",
-            "description": "Paste the Dropbox share link to download your file."
+            "description": "Paste the Dropbox share link to download your file.",
+            "propertyOrder": 1
           },
           "table_name": {
             "type": "string",
             "title": "Table Name",
-            "description": "Name of the output table in Keboola Storage."
+            "description": "Name of the output table in Keboola Storage.",
+            "propertyOrder": 2
           }
         }
       }

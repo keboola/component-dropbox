@@ -18,6 +18,8 @@ class Component(ComponentBase):
         run_time = datetime.now(UTC)
         run_time_str = run_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
+        logging.info("[Dropbox Extractor]: Data processing started")
+
         raw_config = {
             "parameters": self.configuration.parameters,
             "action": getattr(self.configuration, "action", "run")
@@ -31,9 +33,9 @@ class Component(ComponentBase):
             "last_successful_run": run_time_str
         }
 
-        logging.info("Saving component state...")
+        logging.info("[Dropbox Extractor]: Saving component state...")
         self.write_state_file(new_state)
-        logging.info("Data processing completed!")
+        logging.info("[Dropbox Extractor]: Data processing completed")
 
 
 """
