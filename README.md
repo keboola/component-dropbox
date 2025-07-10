@@ -36,9 +36,7 @@ The extractor requires a JSON configuration file structured like this:
         "download_url": "https://www.dropbox.com/scl/fi/xtks1q4d3hfwvy01hhm43/products.csv?dl=0",
         "table_name": "products"
       }
-    ],
-    "bucket": "in.c-dropbox-extractor",
-    "debug": false
+    ]
   },
   "action": "run"
 }
