@@ -121,9 +121,8 @@ jobs:
       - name: Run build_n_test.sh
         run: |
           docker run --rm \
-            -v ${{ github.workspace }}:/code \
             ${{ env.KBC_DEVELOPERPORTAL_APP }}:latest \
-            /bin/sh /code/scripts/build_n_test.sh
+            /bin/sh -e /code/scripts/build_n_test.sh
 
   tests-kbc:
     name: Run KBC Tests
