@@ -10,7 +10,7 @@ COPY uv.lock /code/uv.lock
 
 WORKDIR /code
 
-RUN uv pip sync /code/uv.lock
+RUN uv pip sync --system /code/uv.lock
 
 COPY /src /code/src/
 COPY /tests /code/tests/
