@@ -45,9 +45,8 @@ class DropboxClient:
         )
 
         logging.info(
-            f"Downloading Dropbox file from {safe_url} -> {table_def.full_path}"
+            f"Downloading Dropbox file: {safe_url}"
         )
-        logging.debug(f"Full download URL (debug only): {download_url}")
 
         try:
             response = requests.get(download_url, stream=True, timeout=300)

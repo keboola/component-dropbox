@@ -9,7 +9,7 @@ from dropbox_client import DropboxClient
 def mock_component(tmp_path):
     component = MagicMock()
 
-    def create_out_table_definition(filename, primary_key, incremental, destination):
+    def create_out_table_definition(filename, primary_key, incremental):
         class TableDef:
             full_path = tmp_path / filename
         return TableDef()
@@ -32,9 +32,7 @@ def test_download_single_file(mock_requests_get, mock_component, tmp_path):
                     "download_url": "https://www.dropbox.com/scl/fi/abcd/products.csv?dl=0",
                     "table_name": "products"
                 }
-            ],
-            "bucket": "in.c-dropbox-extractor",
-            "debug": False
+            ]
         }
     }
 
