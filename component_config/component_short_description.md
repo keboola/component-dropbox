@@ -1,0 +1,1 @@
+Downloads files from Dropbox share links into Keboola Storage as CSV tables, with support for multiple links and custom buckets.
